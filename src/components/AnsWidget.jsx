@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 export class AnsWidget extends Component {
   state = {
@@ -16,8 +15,12 @@ export class AnsWidget extends Component {
 
   countTotalFeedback = (a, b, c) => a + b + c;
 
-  countPositiveFeedbackPercentage(evt) {
-    const count = (this.state.Good) /
+  countPositiveFeedbackPercentage(evt, good) {
+    console.log("good- ",this.state.Good);
+    console.log("neutral- ",this.state.Neutral);
+    console.log("bad- ",this.state.Bad);
+
+    const count = (this.state.Good + good) /
     (this.countTotalFeedback(
       this.state.Good,
       this.state.Neutral,
@@ -31,19 +34,19 @@ export class AnsWidget extends Component {
   }
 
   handleGood(evt) {
-    this.setState({ Good: this.state.Good + 1 });
-    this.countPositiveFeedbackPercentage(evt);
+    this.setState({ Good: this.state.Good + 1});
+    this.countPositiveFeedbackPercentage(evt, 1);
     console.log(this.state);
   }
 
   handleNeutral(evt) {
     this.setState({ Neutral: this.state.Neutral + 1 });
-    this.countPositiveFeedbackPercentage(evt);
+    this.countPositiveFeedbackPercentage(evt, 0);
   }
 
   handleBad(evt) {
     this.setState({ Bad: this.state.Bad + 1 });
-    this.countPositiveFeedbackPercentage(evt);
+    this.countPositiveFeedbackPercentage(evt, 0);
   }
 
   render() {
