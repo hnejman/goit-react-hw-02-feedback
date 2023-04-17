@@ -2,6 +2,16 @@ import { Component } from 'react';
 
 export class Statistics extends Component {
   render() {
+    if(this.props.good===0 && this.props.neutral===0 && this.props.bad===0){
+      return(
+        <div>
+          <p>
+            No f. given
+          </p>
+        </div>
+      )
+    }
+
     return (
         <div>
           <p>
